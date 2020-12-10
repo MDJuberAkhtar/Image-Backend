@@ -1,0 +1,66 @@
+service: my-express-application
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  region: ap-south-1
+  profile: lambdaserverless
+  apiGateway:
+    binaryMediaTypes:
+      - '*/*'
+
+
+  environment:
+        NODE_PATH: "./:/opt/node_modules"
+        imageUploadBucket: ${self:custom.imageUploadBucket}
+        region: ${self:provider.region}
+  iamRoleStatements:
+        - Effect: Allow
+          Action:
+              - s3:*
+          Resource: '*'
+
+layers:
+  MyModules:
+    path: layers/my-layers
+    compatibleRuntimes:
+      - nodejs12.x
+    package:
+      include:
+        - node_modules/**
+
+plugins:
+  - serverless-s3-sync
+
+custom:
+  # bucketName: myserverlessdemo-99-project-1
+  imageUploadBucket: myimageuploaad-99-demo-2
+  s3Sync:
+    - bucketName: ${self:custom.imageUploadBucket}
+      localDir: tmp
+
+functions:
+  app:
+    handler: index.handler
+    layers:
+      - {Ref: MyModulesLambdaLayer}
+    events:
+      - http: ANY /
+      - http: 'ANY {proxy+}'
+
+resources:
+ Resources:
+   ImageUploadBucket:
+     Type: AWS::S3::Bucket
+     Properties:
+       BucketName: ${self:custom.imageUploadBucket}
+       AccessControl: PublicRead
+
+package:
+  exclude:
+    - layers/**
+    - node_modules/**
+    - package*
+    - .gitignore
+    - serverless.yml
