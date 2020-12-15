@@ -168,7 +168,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/my-express-application/dev/1607594300639-2020-12-10T09:58:20.639Z/MyModules.zip"
+          "S3Key": "serverless/my-express-application/dev/1607962181817-2020-12-14T16:09:41.817Z/MyModules.zip"
         },
         "LayerName": "MyModules",
         "CompatibleRuntimes": [
@@ -183,7 +183,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/my-express-application/dev/1607597603476-2020-12-10T10:53:23.476Z/my-express-application.zip"
+          "S3Key": "serverless/my-express-application/dev/1608010782295-2020-12-15T05:39:42.295Z/my-express-application.zip"
         },
         "Handler": "index.handler",
         "Runtime": "nodejs12.x",
@@ -213,14 +213,14 @@
         "AppLogGroup"
       ]
     },
-    "AppLambdaVersionHcIxTwwVyPLf6MydUcO2mKXiyf8qvv7HTYLaPFVgdw": {
+    "AppLambdaVersionRTstGOMnlVflidJiM1NgI25arQIzSgJcyMn9eUDs": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "AppLambdaFunction"
         },
-        "CodeSha256": "kPmSoxv4COI0VUb4+SbWIRt+uzLTmptYtid609ClsfQ="
+        "CodeSha256": "xkxThf6MWcCErF/5nrIL9JYbFq751zPBlAUF/h3YRVE="
       }
     },
     "ApiGatewayRestApi": {
@@ -342,7 +342,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1607597595694": {
+    "ApiGatewayDeployment1608010772249": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -414,16 +414,16 @@
     },
     "MyModulesLambdaLayerHash": {
       "Description": "Current Lambda layer hash",
-      "Value": "3008688abf20e81d1886b1d9c858a23ef2959734"
+      "Value": "8755e6042d02bf5bf801bcab9d6a5a719fe3ad8d"
     },
     "MyModulesLambdaLayerS3Key": {
       "Description": "Current Lambda layer S3Key",
-      "Value": "serverless/my-express-application/dev/1607594300639-2020-12-10T09:58:20.639Z/MyModules.zip"
+      "Value": "serverless/my-express-application/dev/1607962181817-2020-12-14T16:09:41.817Z/MyModules.zip"
     },
     "AppLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "AppLambdaVersionHcIxTwwVyPLf6MydUcO2mKXiyf8qvv7HTYLaPFVgdw"
+        "Ref": "AppLambdaVersionRTstGOMnlVflidJiM1NgI25arQIzSgJcyMn9eUDs"
       }
     },
     "ServiceEndpoint": {

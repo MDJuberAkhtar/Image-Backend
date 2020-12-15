@@ -3,6 +3,7 @@ const fs = require('fs')
 const im = require('imagemagick');
 const multer = require('multer');
 const resolution = require('./../common/resolution-data');
+const catchAsync = require('./../common/catchAsync');
 
 const awsConfig = { 
     "region": process.env.region
@@ -24,7 +25,7 @@ const multerConfig ={
 exports.upload = multer(multerConfig)
 
 //get all the images
-exports.getAllImages = async (req, res)=> {
+exports.getAllImages = catchAsync(async(req, res, next)=> {
     const params = {
         Bucket: process.env.imageUploadBucket
     }
@@ -46,7 +47,7 @@ exports.getAllImages = async (req, res)=> {
             res.status(200).send(data.Contents);
         }
     });
-  }
+  })
 
 //upload new images
 
@@ -139,7 +140,7 @@ function info(fileName, res){
     })
 };
 
-exports.uploadImage= async(req, res)=>{
+exports.uploadImage= catchAsync(async(req, res, next)=>{
     if (!req.file) {
         console.log("No file received");
         res.status(400).json({'error': 'No file Received'});
@@ -155,11 +156,11 @@ exports.uploadImage= async(req, res)=>{
         }
     }
 
-}
+})
 
 //delete images
 
-exports.deleteImage = async(req, res)=>{
+exports.deleteImage = catchAsync(async(req, res, next)=>{
   const value = req.params.fileName;
 
   const params = {
@@ -185,4 +186,4 @@ exports.deleteImage = async(req, res)=>{
       }
   });
    
-}
+});

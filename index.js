@@ -21,9 +21,15 @@ app.use(BodyParse.urlencoded({extended: true}))
 app.use(multer().array())
 
 
-
+//apis
 app.use('/', getImageRouter)
 app.use('/api', getUser)
+
+//handle the unknown url
+app.all('*', (req, res, next) => {
+  res.status(404).json({message: `Can't find ${req.originalUrl} on the server`});
+  next();
+});
 
 
 module.exports.handler = serverless(app);

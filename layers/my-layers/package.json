@@ -21,6 +21,7 @@
     "jsonwebtoken": "^8.5.1",
     "multer": "^1.4.2",
     "mysql": "^2.18.1",
+    "redis": "^3.0.2",
     "serverless-http": "^2.6.0",
     "serverless-mysql": "^1.5.4",
     "serverless-s3-sync": "^1.15.0"

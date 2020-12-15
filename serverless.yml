@@ -32,6 +32,7 @@ layers:
 
 plugins:
   - serverless-s3-sync
+  - serverless-offline
 
 custom:
   # bucketName: myserverlessdemo-99-project-1
